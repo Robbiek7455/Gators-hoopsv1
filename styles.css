@@ -1,0 +1,276 @@
+/*
+ * Core styling for the Florida Gators men’s basketball fan hub.
+ * Colours are derived from the official UF palette: a deep blue
+ * (#0021A5) and vibrant orange (#FA4616). The layout uses
+ * responsive design so it works on phones and desktops. Feel free
+ * to enhance spacing, typography and component styles as the site
+ * evolves.
+ */
+
+:root {
+  --gator-blue: #0021a5;
+  --gator-orange: #fa4616;
+  --gator-light: #f7f7f7;
+  --text-dark: #15202b;
+  --text-light: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--gator-light);
+  color: var(--text-dark);
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gator-blue);
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.navbar .menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-links li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar .nav-links li a:hover {
+  background: var(--gator-orange);
+  border-radius: 4px;
+}
+
+/* Mobile menu */
+@media (max-width: 720px) {
+  .navbar .menu-toggle {
+    display: block;
+  }
+  .navbar .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--gator-blue);
+    flex-direction: column;
+    display: none;
+  }
+  .navbar .nav-links.open {
+    display: flex;
+  }
+  .navbar .nav-links li a {
+    padding: 0.75rem 1rem;
+  }
+}
+
+main.content {
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(45deg, var(--gator-blue), var(--gator-orange));
+  color: var(--text-light);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.hero .record {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.next-game {
+  margin-top: 1rem;
+}
+
+.next-game h2 {
+  margin: 0 0 0.25rem;
+}
+
+.hero-buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--gator-orange);
+  color: var(--text-light);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #d53c12;
+}
+
+/* Quick links */
+.quick-links {
+  margin-top: 2rem;
+}
+
+.quick-links .link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.quick-links .link-card {
+  background: var(--gator-blue);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.quick-links .link-card:hover {
+  background: var(--gator-orange);
+}
+
+/* Schedule table */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.schedule-table thead {
+  background: var(--gator-blue);
+  color: var(--text-light);
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background: #f0f4fa;
+}
+
+.schedule-table tbody tr.upcoming {
+  font-style: italic;
+}
+
+.schedule-table tbody tr.win {
+  background: #e6f9ed;
+}
+
+.schedule-table tbody tr.loss {
+  background: #fdecea;
+}
+
+/* Roster grid */
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.player-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.player-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gator-orange);
+}
+
+.player-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.player-info p {
+  margin: 0.15rem 0;
+  font-size: 0.85rem;
+}
+
+/* Stats table */
+.leaders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.leaders-table th,
+.leaders-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.leaders-table thead {
+  background: var(--gator-blue);
+  color: var(--text-light);
+}
+
+/* News list */
+.news-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.news-list li {
+  margin-bottom: 0.5rem;
+}
+
+.news-list a {
+  color: var(--gator-blue);
+  text-decoration: none;
+}
+
+.news-list a:hover {
+  text-decoration: underline;
+}
