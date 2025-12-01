@@ -274,3 +274,12 @@ main.content {
 .news-list a:hover {
   text-decoration: underline;
 }
+
+/* Page visibility: only the active section is displayed */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}

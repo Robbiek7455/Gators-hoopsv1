@@ -15,22 +15,33 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Root element for React -->
-    <div id="root"></div>
-    <!-- React and Router dependencies via CDN -->
-    <script
-      src="https://unpkg.com/react@18/umd/react.production.min.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.production.min.js"
-      crossorigin
-    ></script>
-    <!-- Main application script -->
-    <script src="app.js"></script>
+    <!-- Navigation and pages container -->
+    <nav class="navbar">
+      <div class="logo">Gators Fan Hub</div>
+      <button class="menu-toggle">☰</button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#schedule">Schedule &amp; Results</a></li>
+        <li><a href="#roster">Roster</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#fanzone">Fan Zone</a></li>
+        <li><a href="#news">News</a></li>
+      </ul>
+    </nav>
+    <main class="content">
+      <!-- Individual page sections. These are populated dynamically by main.js -->
+      <section id="home" class="page"></section>
+      <section id="schedule" class="page"></section>
+      <section id="roster" class="page"></section>
+      <section id="stats" class="page"></section>
+      <section id="history" class="page"></section>
+      <section id="media" class="page"></section>
+      <section id="fanzone" class="page"></section>
+      <section id="news" class="page"></section>
+    </main>
+    <!-- Main application script (vanilla JS) -->
+    <script src="main.js"></script>
   </body>
 </html>
