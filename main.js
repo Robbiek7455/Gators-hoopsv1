@@ -63,6 +63,32 @@ const leaders = [
   { stat: 'Blocks', player: 'Alex Condon', value: 1.2 },
 ];
 
+// Recent news headlines summarised from official game recaps【814815743773030†L357-L401】【445942061119865†L309-L337】【333712395387725†L357-L373】.
+// Each item includes a title, a short description drawn from the article and a link to the full story.
+const newsItems = [
+  {
+    title: 'Lee breaks out in win over Providence',
+    description:
+      'Guard Xaivian Lee scored a season‑high 20 points and hit four 3‑pointers as Florida defeated Providence 90–78. The Gators got double‑doubles from Thomas Haugh and Rueben Chinyelu, while Boogie Fland and Urban Klavzar combined for 55 points.',
+    link:
+      'https://floridagators.com/news/2025/11/28/mens-basketball-lee-breaks-out-in-win-over-providence-nov-28-2025',
+  },
+  {
+    title: 'Florida edges Florida State 78–76',
+    description:
+      'Boogie Fland and Alex Condon knocked down clutch free throws to secure a 78–76 rivalry win over Florida State. Thomas Haugh recorded 20 points and 13 rebounds, and Rueben Chinyelu added 10 points and a career‑best 16 boards for the Gators.',
+    link:
+      'https://floridagators.com/news/2025/11/11/mens-basketball-buzzer-florida-vs-florida-state-nov-11-2025',
+  },
+  {
+    title: 'Chinyelu crashes glass as UF smashes Merrimack',
+    description:
+      'Junior center Rueben Chinyelu grabbed 21 rebounds – the most by a Gator since 1994 – and scored 14 points as Florida routed Merrimack 80–45. Alex Condon finished with 20 points and 11 boards, and Thomas Haugh added 13 points.',
+    link:
+      'https://floridagators.com/news/2025/11/21/mens-basketball-chineylu-crashes-glass-uf-smashes-merrimack-nov-21-2025',
+  },
+];
+
 // Format a date string like "2025-11-03" to human friendly form.
 function formatDate(isoDate) {
   const dt = new Date(isoDate + 'T00:00:00');
@@ -78,6 +104,7 @@ function getNextGame() {
 function renderHome() {
   const next = getNextGame();
   let html = '';
+  // Hero with season info and next game
   html += `<section class="hero">`;
   html += `<h1>2025–26 Florida Gators Men’s Basketball</h1>`;
   html += `<p class="record">Overall: ${teamRecord.overall.wins}–${teamRecord.overall.losses} | SEC: ${teamRecord.conference.wins}–${teamRecord.conference.losses}</p>`;
@@ -88,12 +115,62 @@ function renderHome() {
     html += `<p class="opponent">${prefix} ${next.opponent}</p>`;
     html += `<p>${formatDate(next.date)} · ${next.site.split(' (')[0]}</p>`;
     html += `<div class="hero-buttons">`;
-    html += `<a class="btn" href="#schedule">View Schedule</a>`;
-    html += `<a class="btn" href="#" onclick="event.preventDefault()">Listen</a>`;
+    html += `<a class="btn" href="#schedule">Schedule</a>`;
+    html += `<a class="btn" href="#stats">Stats</a>`;
     html += `</div>`;
     html += `</div>`;
   }
   html += `</section>`;
+  // Upcoming games (first two upcoming)
+  const upcoming = schedule.filter((g) => !g.result).slice(0, 2);
+  if (upcoming.length > 0) {
+    html += `<section class="home-section">`;
+    html += `<h2>Upcoming Games</h2>`;
+    html += `<div class="card-grid">`;
+    upcoming.forEach((game) => {
+      const prefix = game.location === 'Home' ? 'vs' : game.location === 'Away' ? 'at' : '';
+      html += `<div class="card">`;
+      html += `<h3>${prefix} ${game.opponent}</h3>`;
+      html += `<p>${formatDate(game.date)}</p>`;
+      html += `<p>${game.site.split(' (')[0]}</p>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+    html += `</section>`;
+  }
+  // Recent results (last two completed games)
+  const results = schedule.filter((g) => g.result).slice(-2);
+  if (results.length > 0) {
+    html += `<section class="home-section">`;
+    html += `<h2>Recent Results</h2>`;
+    html += `<div class="card-grid">`;
+    results.forEach((game) => {
+      const outcome = game.result === 'W' ? 'Win' : 'Loss';
+      html += `<div class="card">`;
+      html += `<h3>${outcome} vs ${game.opponent}</h3>`;
+      html += `<p>${formatDate(game.date)}</p>`;
+      html += `<p>${game.score}</p>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+    html += `</section>`;
+  }
+  // News items
+  if (newsItems.length > 0) {
+    html += `<section class="home-section">`;
+    html += `<h2>Latest News</h2>`;
+    html += `<div class="news-grid">`;
+    newsItems.forEach((n) => {
+      html += `<div class="news-card">`;
+      html += `<h3>${n.title}</h3>`;
+      html += `<p>${n.description}</p>`;
+      html += `<a href="${n.link}" target="_blank" rel="noopener">Read more</a>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+    html += `</section>`;
+  }
+  // Quick links remain at the bottom
   html += `<section class="quick-links">`;
   html += `<h2>Quick Links</h2>`;
   html += `<div class="link-grid">`;

@@ -170,6 +170,66 @@ main.content {
   background: var(--gator-orange);
 }
 
+/* Home sections (upcoming games, recent results, news) */
+.home-section {
+  margin-top: 2rem;
+}
+.home-section h2 {
+  margin-bottom: 0.5rem;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+.news-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.news-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--gator-blue);
+}
+.news-card p {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+.news-card a {
+  color: var(--gator-orange);
+  text-decoration: none;
+  font-weight: 600;
+}
+.news-card a:hover {
+  text-decoration: underline;
+}
+
 /* Schedule table */
 .schedule-table {
   width: 100%;
